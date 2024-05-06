@@ -1,15 +1,13 @@
-
-import './App.css'
-import { Button } from "@/components/ui/button"
+import "./App.css";
+import Layout from "./pages/layout/Layout";
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
-  
-
   return (
-    <>
-      <Button className='ibm-plex-sans-regular'>Click me</Button>
-    </>
-  )
+    <BrowserRouter>
+      <Layout>{/* Place your child components here */}</Layout>;
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;

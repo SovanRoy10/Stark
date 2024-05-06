@@ -163,7 +163,11 @@
 @layer utilities {
   /* ===== UTILITIES */
   .wrapper {
-    @apply max-w-5xl mx-auto px-5 md:px-10 w-full text-dark-400 p-16-regular;
+    @apply max-w-5xl mx-auto px-5 md:px-10 w-full p-16-regular;
+  }
+
+  .text-dark-400 {
+    color: rgb(23, 21, 21);
   }
 
   .gradient-text {
@@ -433,3 +437,5 @@
     @apply flex-center p-14-medium h-full min-h-72 flex-col gap-5 rounded-[16px] border border-dashed bg-purple-100/20 shadow-inner;
   }
 }
+
+
