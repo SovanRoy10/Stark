@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import { navLinks } from "../../../constants/data";
+import { navLinks } from "../../constants/data";
 import { useLocation } from "react-router-dom";
-import { Button } from "../ui/button";
+import { Button } from "./ui/button";
 
 function SideBar() {
   const location = useLocation();
