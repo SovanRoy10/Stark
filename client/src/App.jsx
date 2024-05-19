@@ -1,10 +1,28 @@
-import { Button } from "@/components/ui/button"
+import {
+  createBrowserRouter,
+  RouterProvider,
+  createRoutesFromElements,
+  Outlet,
+  Route,
+} from "react-router-dom";
 
-export default function App() {
-  return (
-    <div>
-      <Button variant="destructive">Click me</Button>
-      <p className="text-green-600 text-2xl">Hello AI saas</p>
-    </div>
-  )
+import Landing from "./page/landing/Landing";
+import Dashboard from "./page/dashboard/Dashboard";
+import { Layout } from "./page/dashboard/Layout";
+
+function App() {
+ 
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path="/" element={<Layout />}>
+        <Route path="/" element={<Landing />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Route>
+    )
+  );
+
+  return <RouterProvider router={router} />;
 }
+export default App;
+
+// 1. authentication
