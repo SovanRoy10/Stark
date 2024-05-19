@@ -17,7 +17,7 @@ export const handlePostSignUp = catchAsyncErros(async (req, res) => {
 
   if (password.length > 64) {
     return next(
-      new ErrorHandler("Password must contain atmax 64 characters!", 400)
+      new ErrorHandler("Password must contain at max 64 characters!", 400)
     );
   }
 
