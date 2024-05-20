@@ -1,4 +1,3 @@
-import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Heading from "@/components/Heading";
 import { MessageSquare } from "lucide-react";
@@ -6,10 +5,15 @@ import { useForm } from "react-hook-form";
 import { Form, FormControl, FormItem, FormMessage } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import axios from "axios";
+import { useState } from "react";
+import Empty from "@/components/Empty";
+import Loader from "@/components/Loader";
 
 import { formSchema } from "./constants";
 
 export default function Conversation() {
+  const [messages, setMessages] = useState([]);
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -26,7 +30,23 @@ export default function Conversation() {
   } = form;
 
   const onSubmit = async (data) => {
-    console.log(data);
+    try {
+      const response = await axios.post(
+        "http://localhost:4000/api/v1/conversation",
+        {
+          messages: data.prompt,
+        }
+      );
+
+      setMessages((prevMessages) => [
+        { role: "user", content: data.prompt },
+        { role: "gemini", content: response.data },
+        ...prevMessages,
+      ]);
+      form.reset();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -73,7 +93,29 @@ export default function Conversation() {
           </form>
         </Form>
 
-        <div className="space-y-4 mt-4">Messages content</div>
+        <div className="space-y-4 mt-4">
+          <div className="flex flex-col gap-y-4">
+            {
+              isLoading && (
+                <div className="p-8 rounded-lg w-full flex items-center justify-center bg-muted">
+                    <Loader/>
+                </div>
+              )
+            }
+            {messages.length === 0 && !isLoading && <div><Empty label="No conversation started"/></div>}
+            {messages &&
+              messages.map((message, index) => (
+                <div
+                  key={index}
+                  className={`p-4 rounded-lg w-full items-start gap-x-8 ${
+                    message.role === "user" ? "bg-white border border-black/10" : "bg-muted"
+                  }`}
+                >
+                  <p>{message.content}</p>
+                </div>
+              ))}
+          </div>
+        </div>
       </div>
     </div>
   );
