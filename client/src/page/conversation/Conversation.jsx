@@ -35,7 +35,7 @@ export default function Conversation() {
   const onSubmit = async (data) => {
     try {
       const response = await axios.post(
-        "http://localhost:4000/api/v1/conversation",
+        `${import.meta.env.VITE_BACKEND_URL}/api/v1/conversation`,
         {
           messages: data.prompt,
         }
