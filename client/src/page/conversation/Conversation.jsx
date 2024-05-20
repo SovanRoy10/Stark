@@ -7,11 +7,7 @@ import { Form, FormControl, FormItem, FormMessage } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-export const formSchema = z.object({
-  prompt: z.string().min(1, {
-    message: "Prompt is required",
-  }),
-});
+import { formSchema } from "./constants";
 
 export default function Conversation() {
   const form = useForm({
@@ -60,7 +56,11 @@ export default function Conversation() {
                   placeholder="How do I calculate the radius of a circle"
                 />
               </FormControl>
-              <FormMessage />
+              {errors.prompt && (
+                <p className="mt-2 text-sm text-red-600">
+                  {errors.prompt.message}
+                </p>
+              )}
             </FormItem>
 
             <Button
