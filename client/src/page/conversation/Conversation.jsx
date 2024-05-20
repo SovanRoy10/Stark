@@ -62,7 +62,6 @@ export default function Conversation() {
         bgColor="bg-violet-500/10"
       />
       
-
       <div className="px-4 lg:px-8">
         <Form {...form}>
           <form
