@@ -21,7 +21,7 @@ mongoose.connect(process.env.MONGO_URL).then((e) => {
 
 app.use(
   cors({
-    origin: ["http://localhost:5173"],
+    origin: [process.env.FRONTEND_URL],
     methods: ["GET", "POST", "DELETE", "PUT"],
     credentials: true,
   })
