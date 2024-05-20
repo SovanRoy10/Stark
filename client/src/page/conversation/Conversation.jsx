@@ -10,6 +10,9 @@ import { useState } from "react";
 import Empty from "@/components/Empty";
 import Loader from "@/components/Loader";
 
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+
 import { formSchema } from "./constants";
 
 export default function Conversation() {
@@ -93,7 +96,7 @@ export default function Conversation() {
           </form>
         </Form>
 
-        <div className="space-y-4 mt-4">
+        <div className="space-y-4  py-4">
           <div className="flex flex-col gap-y-4">
             {
               isLoading && (
@@ -111,7 +114,7 @@ export default function Conversation() {
                     message.role === "user" ? "bg-white border border-black/10" : "bg-muted"
                   }`}
                 >
-                  <p>{message.content}</p>
+                  <ReactMarkdown children={message.content} remarkPlugins={[remarkGfm]} />
                 </div>
               ))}
           </div>
