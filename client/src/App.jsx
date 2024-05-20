@@ -7,6 +7,7 @@ import {
 
 import Landing from "./page/landing/Landing";
 import Dashboard from "./page/dashboard/Dashboard";
+import Conversation from "./page/conversation/Conversation";
 import { Layout } from "./page/dashboard/Layout";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <Route path="/" element={<Layout />}>
         <Route path="/" element={<Landing />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/conversation" element={<Conversation />} />
       </Route>
     )
   );
