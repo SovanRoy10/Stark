@@ -1,8 +1,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import Heading from "@/components/Heading";
-import { Music } from "lucide-react";
+import { Music, VideoIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
-import { Form, FormControl, FormItem, FormMessage } from "@/components/ui/form";
+import { Form, FormControl, FormItem } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import axios from "axios";
@@ -13,7 +13,7 @@ import Loader from "@/components/Loader";
 import { formSchema } from "../conversation/constants";
 
 export default function MusicPage() {
-  const [music, setMusic] = useState("");
+  const [video, setVideo] = useState("");
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -32,31 +32,31 @@ export default function MusicPage() {
 
   const onSubmit = async (data) => {
     try {
-      setMusic(undefined);
+      setVideo(undefined);
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/v1/music`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/v1/video`,
         {
           messages: data.prompt,
         }
       );
 
-      setMusic(response.data.audio);
+      setVideo(response.data[0]);
       form.reset();
     } catch (error) {
       console.error(error);
     }
   };
 
-  console.log(music);
+  // console.log(video);
 
   return (
     <div>
       <Heading
-        title="Music Generation"
+        title="Video Generation"
         description="Turn your prompt into music"
-        Icon={Music}
-        iconColor="text-emerald-500"
-        bgColor="bg-emerald-500/10"
+        Icon={VideoIcon}
+        iconColor="text-orange-700"
+        bgColor="bg-orange-700/10"
       />
 
       <div className="px-4 lg:px-8">
@@ -73,7 +73,7 @@ export default function MusicPage() {
                   {...register("prompt")}
                   className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
                   disabled={isLoading}
-                  placeholder="Piano solo"
+                  placeholder="Virat Kohli playing football"
                 />
               </FormControl>
               {errors.prompt && (
@@ -100,15 +100,15 @@ export default function MusicPage() {
                 <Loader />
               </div>
             )}
-            {!music && !isLoading && (
+            {!video && !isLoading && (
               <div>
-                <Empty label="No music generated" />
+                <Empty label="No video generated" />
               </div>
             )}
-            {music && (
-              <audio controls className="w-full mt-8">
-                <source src={music} />
-              </audio>
+            {video && (
+              <video controls className="w-full aspect-video mt-8 rounded-lg border bg-black">
+                <source src={video} />
+              </video>
             )}
           </div>
         </div>

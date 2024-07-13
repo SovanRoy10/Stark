@@ -11,6 +11,7 @@ import Conversation from "./page/conversation/Conversation";
 import CodePage from "./page/code/Code";
 import Image from "./page/image/Image";
 import Music from "./page/music/Music";
+import Video from "./page/video/Video"
 import SignIn from "./page/signIn/SignIn";
 import SignUp from "./page/signUp/SignUp";
 
@@ -60,6 +61,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <Music />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/video"
+            element={
+              <ProtectedRoute>
+                <Video />
               </ProtectedRoute>
             }
           />

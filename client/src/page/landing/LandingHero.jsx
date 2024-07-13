@@ -15,6 +15,7 @@ export default function LandingHero() {
               strings: [
                 "Chat Bot",
                 "Photo Generation",
+                "Video Generation",
                 "Music Generation",
                 "Code Generation",
               ],
@@ -30,10 +31,8 @@ export default function LandingHero() {
 
         <div>
           <Link to={isSignedIn ? "/dashboard" : "/sign-in"}>
-            <Button
-              className="px-10 py-6 text-xl font-semibold text-center text-white transition duration-300 rounded-lg hover:from-purple-600 hover:to-pink-600 ease bg-gradient-to-br from-purple-500 to-pink-500 md:w-auto"
-            >
-             Start Generating
+            <Button className="px-10 py-6 text-xl font-semibold text-center text-white transition duration-300 rounded-lg hover:from-purple-600 hover:to-pink-600 ease bg-gradient-to-br from-purple-500 to-pink-500 md:w-auto">
+              Start Generating
             </Button>
           </Link>
         </div>
