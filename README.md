@@ -22,7 +22,7 @@ Welcome to **STARK AI** – your all-in-one AI SaaS solution for text, code, ima
 
 ### Frontend
 - **React**
-- **Shadcn**
+- **Tailwind css**
 
 ### Backend
 - **Node.js**
