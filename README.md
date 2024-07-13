@@ -20,7 +20,9 @@ Welcome to **STARK AI** – your all-in-one AI SaaS solution for text, code, ima
 
 ## Demo
 **Demo Video**
-https://github.com/user-attachments/assets/c1a805fc-b7f0-42d4-b54e-acd6c2aba3f5
+
+https://github.com/user-attachments/assets/50b14065-8021-4955-bf01-1e122fa18379
+
 
 
 ## Tech Stack
