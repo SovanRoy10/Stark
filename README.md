@@ -18,6 +18,10 @@ Welcome to **STARK AI** – your all-in-one AI SaaS solution for text, code, ima
 4. **Video Generation**: Craft engaging videos with advanced AI algorithms.
 5. **Music Generation**: Compose original music pieces tailored to your preferences.
 
+## Demo
+
+
+
 ## Tech Stack
 
 ### Frontend
