@@ -6,7 +6,7 @@ import Sidebar from "./Sidebar";
 export default function MobileSidebar() {
   return (
     <>
-      <Sheet>
+      <Sheet> 
         <SheetTrigger>
           <Button className="md:hidden" variant="ghost" size="icon">
             <Menu />

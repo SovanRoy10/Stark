@@ -1,8 +1,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import Heading from "@/components/Heading";
-import { MessageSquare } from "lucide-react";
+import { Code } from "lucide-react";
 import { useForm } from "react-hook-form";
-import { Form, FormControl, FormItem, FormMessage } from "@/components/ui/form";
+import { Form, FormControl, FormItem } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import axios from "axios";
@@ -10,14 +10,13 @@ import { useState } from "react";
 import Empty from "@/components/Empty";
 import Loader from "@/components/Loader";
 
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
-import { formSchema } from "./constants";
+import { formSchema } from "../conversation/constants";
 
-export default function Conversation() {
+export default function CodePage() {
   const [messages, setMessages] = useState([]);
-
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -36,7 +35,7 @@ export default function Conversation() {
   const onSubmit = async (data) => {
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/v1/conversation`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/v1/code`,
         {
           messages: data.prompt,
         }
@@ -56,13 +55,13 @@ export default function Conversation() {
   return (
     <div>
       <Heading
-        title="Conversation"
-        description="Our most advanced conversation"
-        Icon={MessageSquare}
-        iconColor="text-violet-500"
-        bgColor="bg-violet-500/10"
+        title="Code Generation"
+        description="Generate code with descriptive text."
+        Icon={Code}
+        iconColor="text-green-700"
+        bgColor="bg-green-700/10"
       />
-
+      
       <div className="px-4 lg:px-8">
         <Form {...form}>
           <form
@@ -77,7 +76,7 @@ export default function Conversation() {
                   {...register("prompt")}
                   className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
                   disabled={isLoading}
-                  placeholder="How do I calculate the radius of a circle"
+                  placeholder="Simple toggle button using react hooks"
                 />
               </FormControl>
               {errors.prompt && (
@@ -99,30 +98,23 @@ export default function Conversation() {
 
         <div className="space-y-4  py-4">
           <div className="flex flex-col gap-y-4">
-            {isLoading && (
-              <div className="p-8 rounded-lg w-full flex items-center justify-center bg-muted">
-                <Loader />
-              </div>
-            )}
-            {messages.length === 0 && !isLoading && (
-              <div>
-                <Empty label="No conversation started" />
-              </div>
-            )}
+            {
+              isLoading && (
+                <div className="p-8 rounded-lg w-full flex items-center justify-center bg-muted">
+                    <Loader/>
+                </div>
+              )
+            }
+            {messages.length === 0 && !isLoading && <div><Empty label="No conversation started"/></div>}
             {messages &&
               messages.map((message, index) => (
                 <div
                   key={index}
                   className={`p-4 rounded-lg w-full items-start gap-x-8 ${
-                    message.role === "user"
-                      ? "bg-white border border-black/10"
-                      : "bg-muted"
+                    message.role === "user" ? "bg-white border border-black/10" : "bg-muted"
                   }`}
                 >
-                  <ReactMarkdown
-                    children={message.content}
-                    remarkPlugins={[remarkGfm]}
-                  />
+                  <ReactMarkdown children={message.content} remarkPlugins={[remarkGfm]} />
                 </div>
               ))}
           </div>
