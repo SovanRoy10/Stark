@@ -23,7 +23,7 @@ Welcome to **STARK AI** – your all-in-one AI SaaS solution for text, code, ima
 
 https://github.com/user-attachments/assets/50b14065-8021-4955-bf01-1e122fa18379
 
-** Video Generation**
+**Video Generation**
 ![image](https://github.com/user-attachments/assets/cd4a78c6-d9a9-4b57-9b79-47c3236c719a)
 
 
