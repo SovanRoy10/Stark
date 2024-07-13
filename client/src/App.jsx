@@ -10,19 +10,63 @@ import Dashboard from "./page/dashboard/Dashboard";
 import Conversation from "./page/conversation/Conversation";
 import CodePage from "./page/code/Code";
 import Image from "./page/image/Image";
+import Music from "./page/music/Music";
+import SignIn from "./page/signIn/SignIn";
+import SignUp from "./page/signUp/SignUp";
+
 import { Layout } from "./page/dashboard/Layout";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
- 
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" element={<Layout />}>
+      <>
         <Route path="/" element={<Landing />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/conversation" element={<Conversation />} />
-        <Route path="/code" element={<CodePage />} />
-        <Route path="/image" element={<Image />} />
-      </Route>
+        <Route path="/" element={<Layout />}>
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/conversation"
+            element={
+              <ProtectedRoute>
+                <Conversation />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/code"
+            element={
+              <ProtectedRoute>
+                <CodePage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/image"
+            element={
+              <ProtectedRoute>
+                <Image />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/music"
+            element={
+              <ProtectedRoute>
+                <Music />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/sign-up" element={<SignUp />} />
+        </Route>
+      </>
     )
   );
 
