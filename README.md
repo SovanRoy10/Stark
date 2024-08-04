@@ -1,4 +1,4 @@
-Here’s a sample README for your STARK AI project:
+
 
 ---
 
